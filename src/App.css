@@ -1,0 +1,70 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.links,
+.return {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  background-color: lightgreen;
+}
+
+.return {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.personagens-div,
+.empty-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-personagens-div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+}
+
+/* .card-container {
+  transition: transform 2s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+} */
+
+.back, .front {
+  background-color: slateblue;
+  display: flex;
+  flex-direction: column-reverse;
+  width: 300px;
+  height: 400px;
+  margin: 10px;
+}
+
+/* .back:hover {
+  transform: rotateY(180deg);
+  transition: transform 0.8s;
+} */
+
+.back p {
+  font-size: 27px;
+}
+
+.details-link {
+  text-decoration: none;
+  color: white;
+}

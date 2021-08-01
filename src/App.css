@@ -59,6 +59,10 @@ body {
   margin: 10px;
 }
 
+.front {
+  justify-content: center;
+}
+
 /* .back:hover {
   transform: rotateY(180deg);
   transition: transform 0.8s;

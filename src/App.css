@@ -13,6 +13,10 @@
   color: white;
 }
 
+body {
+  background-color: #282c34;
+}
+
 .links,
 .return {
   display: flex;
@@ -37,7 +41,7 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  max-width: 1200px;
+  max-width: 70vw;
 }
 
 /* .card-container {
@@ -50,8 +54,8 @@
   background-color: slateblue;
   display: flex;
   flex-direction: column-reverse;
-  width: 300px;
-  height: 400px;
+  width: 200px;
+  height: 300px;
   margin: 10px;
 }
 

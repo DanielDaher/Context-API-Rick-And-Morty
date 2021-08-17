@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MyContext from './MyContext';
 
@@ -15,12 +15,21 @@ import MyContext from './MyContext';
 }; */
 
 function Home() {
-  const { fetchAPI, characters } = useContext(MyContext);
+  const { fetchAPI, characters, setLevel } = useContext(MyContext);
+  
+  useEffect(() => {
+    fetchAPI()
+  }, [fetchAPI]);
 
   return (
     <div>
-      <Link to="/characters" className="links">Personagens</Link>
-      <button onClick={ fetchAPI }>Fazer requisição</button>
+      <Link to="/characters" className="links">Jogar!</Link>
+      <select onChange={(e) => setLevel(e.target.value)}>
+        <option>Escolher dificuldade</option>
+        <option>Fácil</option>
+        <option>Médio</option>
+        <option>Difícil</option>
+      </select>
       {console.log(characters)}
       {console.log(useContext(MyContext))}
     </div>

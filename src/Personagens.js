@@ -3,7 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import MyContext from './MyContext';
 
 function Personagens() {
-  const { characters, makeCards, cloneCards, gameLevel } = useContext(MyContext);
+  const { characters, charactersEasy, charactersMedium, makeCards, cloneCards, gameLevel } = useContext(MyContext);
   let gameCharacters = [];
 
   useEffect(() => {
@@ -11,16 +11,21 @@ function Personagens() {
   }, []);
 
   switch (gameLevel) {
-    case 'Fácil':
-      gameCharacters = characters.filter((character, index) => index < 5);
-      
+    case 'Difícil':
+      gameCharacters = characters;
+
       break;
+    
+      case 'Médio':
+        gameCharacters = charactersMedium;
+  
+        break;
   
     default:
-      gameCharacters = characters;
+      gameCharacters = charactersEasy;
       break;
   }
-
+  
   if (characters.length > 0) {
     return (<div className='personagens-div'>
       <Link to="/" className="return">Voltar</Link>

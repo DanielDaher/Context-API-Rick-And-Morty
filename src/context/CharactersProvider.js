@@ -108,6 +108,7 @@ checkHitOrError(id) {
 }
 
 eraseCard(id) {
+  alert('Acertou!');
   setTimeout(() => this.setState({
     characters: this.state.characters.filter((character) => character.id !== Number(id)),
     charactersEasy: this.state.charactersEasy.filter((character) => character.id !== Number(id)),

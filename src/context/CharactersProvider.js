@@ -12,7 +12,6 @@ class Provider extends Component {
         charactersMedium: [],
         charactersKeys: {},
         numberOfCardsFlipped: 0,
-        numberOfCloneCardsFlipped: 0,
         levelOfTheGame: 'Fácil',
       };
       this.toFetch = this.toFetch.bind(this);
@@ -22,6 +21,7 @@ class Provider extends Component {
       this.cards = this.cards.bind(this);
       this.cloneCards = this.cloneCards.bind(this);
       this.checkHitOrError = this.checkHitOrError.bind(this);
+      this.eraseCard = this.eraseCard.bind(this);
   }
 
   async toFetch() {
@@ -66,7 +66,7 @@ flipCard({ target }) {
 flipCloneCard({ target }) {
   const { id } = target;
   this.setState((prevState) => ({
-      numberOfCloneCardsFlipped: prevState.numberOfCloneCardsFlipped + 1,
+      numberOfCardsFlipped: prevState.numberOfCardsFlipped + 1,
       cloneCharactersKeys: {
         ...prevState.cloneCharactersKeys,
         [id]: !prevState.cloneCharactersKeys[id],
@@ -75,55 +75,44 @@ flipCloneCard({ target }) {
 }
 
 checkHitOrError(id) {
-  const { characters, charactersKeys, cloneCharactersKeys, numberOfCardsFlipped, numberOfCloneCardsFlipped } = this.state;
+  const { characters, charactersKeys, cloneCharactersKeys, numberOfCardsFlipped } = this.state;
   const newKeys = {};
   const newCloneKeys = {};
 
   [...characters].map((character) => newKeys[`${character.id}`] = false);
   [...characters].map((character) => newCloneKeys[`${character.id}`] = false);
 
-  if (numberOfCardsFlipped > 0 && numberOfCloneCardsFlipped > 0) {
+  if (numberOfCardsFlipped > 2){
+    return this.setState((prevState) => ({
+      numberOfCardsFlipped: 0,
+      charactersKeys: newKeys,
+      cloneCharactersKeys: newCloneKeys,
+    }));
+  }
+
+  if (numberOfCardsFlipped > 1) {
     if (charactersKeys[id] && cloneCharactersKeys[id]) {
       setTimeout(() => this.setState({
         numberOfCardsFlipped: 0,
-        numberOfCloneCardsFlipped: 0,
-        characters: this.state.characters.filter((character) => character.id !== Number(id)),
-        charactersEasy: this.state.charactersEasy.filter((character) => character.id !== Number(id)),
-        charactersMedium: this.state.charactersMedium.filter((character) => character.id !== Number(id)),
         charactersKeys: newKeys,
         cloneCharactersKeys: newCloneKeys,
-      }), 1000);
-    }
-
-    if (numberOfCardsFlipped > 0 || numberOfCloneCardsFlipped > 0) {
+      }, () => this.eraseCard(id)), 1000);
+    } else {
       setTimeout(() => this.setState((prevState) => ({
         numberOfCardsFlipped: 0,
-        numberOfCloneCardsFlipped: 0,
         charactersKeys: newKeys,
         cloneCharactersKeys: newCloneKeys, 
       })), 1000);
     }
-  }
+    }
+}
 
-  if (numberOfCardsFlipped > 1 || numberOfCloneCardsFlipped > 1) {
-    setTimeout(() => this.setState((prevState) => ({
-      numberOfCardsFlipped: 0,
-      numberOfCloneCardsFlipped: 0,
-      charactersKeys: newKeys,
-      cloneCharactersKeys: newCloneKeys, 
-    })), 1000);
-
-  }
-
-  if (numberOfCardsFlipped > 2 || numberOfCloneCardsFlipped > 2) {
-    this.setState((prevState) => ({
-      numberOfCardsFlipped: 0,
-      numberOfCloneCardsFlipped: 0,
-      charactersKeys: newKeys,
-      cloneCharactersKeys: newCloneKeys, 
-    }));
-  }
-
+eraseCard(id) {
+  setTimeout(() => this.setState({
+    characters: this.state.characters.filter((character) => character.id !== Number(id)),
+    charactersEasy: this.state.charactersEasy.filter((character) => character.id !== Number(id)),
+    charactersMedium: this.state.charactersMedium.filter((character) => character.id !== Number(id)),
+  }), 1000);
 }
 
 cards(character, index) {

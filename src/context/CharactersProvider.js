@@ -90,6 +90,8 @@ checkHitOrError(id) {
         characters: this.state.characters.filter((character) => character.id !== Number(id)),
         charactersEasy: this.state.charactersEasy.filter((character) => character.id !== Number(id)),
         charactersMedium: this.state.charactersMedium.filter((character) => character.id !== Number(id)),
+        charactersKeys: newKeys,
+        cloneCharactersKeys: newCloneKeys,
       }), 1000);
     }
 
@@ -104,6 +106,16 @@ checkHitOrError(id) {
   }
 
   if (numberOfCardsFlipped > 1 || numberOfCloneCardsFlipped > 1) {
+    setTimeout(() => this.setState((prevState) => ({
+      numberOfCardsFlipped: 0,
+      numberOfCloneCardsFlipped: 0,
+      charactersKeys: newKeys,
+      cloneCharactersKeys: newCloneKeys, 
+    })), 1000);
+
+  }
+
+  if (numberOfCardsFlipped > 2 || numberOfCloneCardsFlipped > 2) {
     this.setState((prevState) => ({
       numberOfCardsFlipped: 0,
       numberOfCloneCardsFlipped: 0,
@@ -111,7 +123,6 @@ checkHitOrError(id) {
       cloneCharactersKeys: newCloneKeys, 
     }));
   }
-
 
 }
 

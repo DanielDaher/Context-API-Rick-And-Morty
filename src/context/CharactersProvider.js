@@ -25,7 +25,6 @@ class Provider extends Component {
   }
 
   async toFetch() {
-    alert('Fetch');
     const requisition = await fetch('https://rickandmortyapi.com/api/character');
     const characters = await requisition.json();
     const charactersEasy = characters.results.slice(0, 5);

@@ -5,6 +5,7 @@ import MyContext from './MyContext';
 function Personagens() {
   const { characters, charactersEasy, charactersMedium, makeCards, cloneCards, gameLevel } = useContext(MyContext);
   let gameCharacters = [];
+  let cloneGameCharacters = [];
 
   useEffect(() => {
     console.log('Montei');
@@ -12,17 +13,48 @@ function Personagens() {
 
   switch (gameLevel) {
     case 'Difícil':
-      gameCharacters = characters;
+      gameCharacters = characters.sort(function (a, b) {
+        if (a.name > b.name) {
+          return 1;
+        }
+        if (a.name < b.name) {
+          return -1;
+        }
+        return 0;
+      });
+
+      cloneGameCharacters = characters;
 
       break;
     
       case 'Médio':
-        gameCharacters = charactersMedium;
+        gameCharacters = charactersMedium.sort(function (a, b) {
+          if (a.name > b.name) {
+            return 1;
+          }
+          if (a.name < b.name) {
+            return -1;
+          }
+          return 0;
+        });
+        
+        cloneGameCharacters = charactersMedium;
   
         break;
   
     default:
-      gameCharacters = charactersEasy;
+      gameCharacters = [...charactersEasy].sort(function (a, b) {
+        if (a.name > b.name) {
+          return 1;
+        }
+        if (a.name < b.name) {
+          return -1;
+        }
+        return 0;
+      });
+
+      cloneGameCharacters = [...charactersEasy];
+
       break;
   }
   
@@ -33,7 +65,7 @@ function Personagens() {
         {gameCharacters.map((character, index) => makeCards(character, index))}
       </div>
       <div className="main-personagens-div">
-      {gameCharacters.map((character, index) => cloneCards(character, index))}
+      {cloneGameCharacters.map((character, index) => cloneCards(character, index))}
       </div>
     </div>)
   }

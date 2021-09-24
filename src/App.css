@@ -94,6 +94,5 @@ body {
 
   .main-personagens-div {
     min-width: 320px;
-    flex-wrap: nowrap;
   }
 }

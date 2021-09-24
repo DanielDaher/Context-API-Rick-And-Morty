@@ -79,12 +79,21 @@ body {
 
 @media screen and (max-width: 600px) {
   .back, .front {
-    width: 40px;
-    height: 60px;
+    width: 53px;
+    height: 80px;
     margin: 5px;
   }
 
   .front h4, .back p {
-    font-size: 5px;
+    font-size: 8px;
+  }
+
+  .personagens-div {
+    width: 100vw;
+  }
+
+  .main-personagens-div {
+    min-width: 320px;
+    flex-wrap: nowrap;
   }
 }

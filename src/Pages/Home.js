@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import MyContext from './MyContext';
+import MyContext from '../MyContext';
+import WelcomePhrase from '../Components/WelcomePhrase';
 
 /* class Home extends React.Component { 
     render() {
@@ -22,7 +23,8 @@ function Home() {
   }, [fetchAPI]);
 
   return (
-    <div>
+    <div className="home-main-content">
+      <WelcomePhrase />
       <Link to="/characters" className="links">Jogar!</Link>
       <select onChange={(e) => setLevel(e.target.value)}>
         <option>Escolher dificuldade</option>

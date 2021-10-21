@@ -1,8 +1,8 @@
 import './App.css';
-import Home from './Home';
+import Home from './Pages/Home';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Personagens from './Personagens';
-import Empty from './Empty';
+import Personagens from './Pages/Personagens';
+import Congratulations from './Pages/Congratulations';
 import Details from './Details';
 import CharactersProvider from './context/CharactersProvider';
 
@@ -11,16 +11,16 @@ function App() {
   return (
     <CharactersProvider>
       <div className="App">
-        <header className="App-header">
+        <div className="main-app">
         <BrowserRouter>
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/characters' component={Personagens} />
-          <Route exact path='/empty' component={Empty} />
+          <Route exact path='/congratulations' component={Congratulations} />
           <Route path='/details/:id' component={Details} />
         </Switch>
         </BrowserRouter>
-        </header>
+        </div>
       </div>
     </CharactersProvider>
   );

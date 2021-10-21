@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import MyContext from './MyContext';
+import MyContext from '../MyContext';
 
 function Personagens() {
   const { characters, charactersEasy, charactersMedium, makeCards, cloneCards, gameLevel } = useContext(MyContext);
@@ -28,7 +28,7 @@ function Personagens() {
       break;
     
       case 'Médio':
-        gameCharacters = charactersMedium.sort(function (a, b) {
+        gameCharacters = [...charactersMedium].sort(function (a, b) {
           if (a.name > b.name) {
             return 1;
           }
@@ -38,7 +38,8 @@ function Personagens() {
           return 0;
         });
         
-        cloneGameCharacters = charactersMedium;
+        cloneGameCharacters = [...charactersMedium];
+
   
         break;
   
@@ -58,9 +59,12 @@ function Personagens() {
       break;
   }
   
-  if (characters.length > 0) {
+  if (gameCharacters.length > 0) {
     return (<div className='personagens-div'>
       <Link to="/" className="return">Voltar</Link>
+      <div>
+        <h3>Acertos para ganhar: {gameCharacters.length}</h3>
+      </div>
       <div className="main-personagens-div">
         {gameCharacters.map((character, index) => makeCards(character, index))}
       </div>
@@ -69,7 +73,7 @@ function Personagens() {
       </div>
     </div>)
   }
-  return <Redirect to='/empty' />
+  return <Redirect to='/congratulations' />
 }
 
 export default Personagens;

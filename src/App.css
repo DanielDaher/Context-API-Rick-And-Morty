@@ -14,6 +14,18 @@ body {
   background-color: #282c34;
 }
 
+select {
+  background-color: slateblue;
+  color: lightgreen;
+  height: 35px;
+  font-size: 20px;
+}
+
+select:hover {
+  border-width: 1.7px;
+  border-color: lightgreen;
+}
+
 .links,
 .return {
   display: flex;
@@ -30,6 +42,11 @@ body {
 .return {
   width: 100px;
   margin-bottom: 10px;
+}
+
+.links:hover, .return:hover {
+  background-color: slateblue;
+  color: white;
 }
 
 .home-main-content {

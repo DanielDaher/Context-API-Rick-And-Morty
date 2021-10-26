@@ -64,6 +64,10 @@ select:hover {
   text-align: center;
 }
 
+.congratulations-div {
+  font-size: 25px;
+}
+
 .main-personagens-div {
   display: flex;
   justify-content: space-between;

@@ -1,6 +1,7 @@
 .App {
   background-color: #282c34;
   background-image: url('../src/images/rickandmorty.png');
+  background-repeat: no-repeat;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

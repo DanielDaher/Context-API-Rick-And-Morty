@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import MyContext from '../MyContext';
 
@@ -7,18 +7,14 @@ function Personagens() {
   let gameCharacters = [];
   let cloneGameCharacters = [];
 
-  useEffect(() => {
-    console.log('Montei');
-  }, []);
-
   switch (gameLevel) {
     case 'Difícil':
-      gameCharacters = characters.sort(function (a, b) {
+      gameCharacters = [...characters].sort(function (a, b) {
         if (a.name > b.name) {
-          return 1;
+          return -1;
         }
         if (a.name < b.name) {
-          return -1;
+          return 1;
         }
         return 0;
       });

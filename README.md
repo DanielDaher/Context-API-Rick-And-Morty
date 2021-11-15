@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# Context API - Rick and Morty Memory Game
+Boas vindas ao Jogo da Memória do Rick and Morty, onde você pode tentar impressionar o Rick (se vencer).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Objetivos:
 
-## Available Scripts
+Desenvolvi esta aplicação para treinar minhas habilidades em React e Context API. Inicialmente era um exercício, proposto pela trybe, onde o único objetivo seria renderizar informações dos personagens de 'Rick and Morty'. Porém, enxerguei aqui uma oportunidade de criar um jogo da memória com um tema legal.
 
-In the project directory, you can run:
+## Para acessar/jogar, segue o link da aplicação:
+(https://context-api-rick-and-morty-danieldaher.vercel.app/)
 
-### `npm start`
+## Como rodar a aplicação no computador:
+Caso queira rodar a aplicação em seu próprio computador, siga este passo-a-passo.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Seu computador precisa de Git (para versionamento do código), Node.js & npm (para executar a aplicação). Clique nos links, caso ainda não tenha instalado algum desses:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+ - [ ] [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+ - [ ] [Node.js e npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-### `npm test`
+## Instalando a aplicação:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Primeiro, abra um novo terminal e clone o repositório utilizando o comando 
+`git clone git@github.com:DanielDaher/Context-API-Rick-And-Morty.git`
 
-### `npm run build`
+2. Em seguida, digite `cd Context-API-Rick-And-Morty` para entrar no diretório (pasta) do projeto, que acabou de ser criada.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Execute `npm install` para instalar as dependências necessárias.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Com o comando `npm start`, seu navegador principal abrirá uma guia com o projeto já funcionando com um link local. Isto pode demorar alguns minutos, basta aguardar. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+9. E agora é só desfrutar do site! Lembrando que o usuário pode escolher o nível de dificuldade, antes de jogar. Para vencer, é só encontrar os pares das cartas.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Tecnologias usadas pela aplicação.
+Durante o desenvolvimento, utilizei `React`, `Context API`, e uma biblioteca chamada `react-card-flip`. A documentação desta biblioteca pode ser encontrada aqui: https://www.npmjs.com/package/react-card-flip ;

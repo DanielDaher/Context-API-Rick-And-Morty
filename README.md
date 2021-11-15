@@ -27,8 +27,10 @@ Caso queira rodar a aplicação em seu próprio computador, siga este passo-a-pa
 
 4. Com o comando `npm start`, seu navegador principal abrirá uma guia com o projeto já funcionando com um link local. Isto pode demorar alguns minutos, basta aguardar. 
 
-9. E agora é só desfrutar do site! Lembrando que o usuário pode escolher o nível de dificuldade, antes de jogar. Para vencer, é só encontrar os pares das cartas.
+5. E agora é só desfrutar do site! Lembrando que o usuário pode escolher o nível de dificuldade, antes de jogar. Para vencer, é só encontrar os pares das cartas.
 
 
 ## Tecnologias usadas pela aplicação.
 Durante o desenvolvimento, utilizei `React`, `Context API`, e uma biblioteca chamada `react-card-flip`. A documentação desta biblioteca pode ser encontrada aqui: https://www.npmjs.com/package/react-card-flip ;
+
+Além disso, também utilizei a `The Rick and Morty API`. Segue o link da documentação: https://rickandmortyapi.com/

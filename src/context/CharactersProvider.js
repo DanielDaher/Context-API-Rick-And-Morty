@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MyContext from '../MyContext';
 import ReactCardFlip from 'react-card-flip';
+import Swal from 'sweetalert2';
 
 
 class Provider extends Component {
@@ -107,7 +108,13 @@ checkHitOrError(id) {
 }
 
 eraseCard(id) {
-  alert('Acertou!');
+  Swal.fire({
+    text: 'Acertou!',
+    icon: 'success',
+    timer: 1500,
+    timerProgressBar: true,
+    showConfirmButton: true
+  });
   setTimeout(() => this.setState({
     characters: this.state.characters.filter((character) => character.id !== Number(id)),
     charactersEasy: this.state.charactersEasy.filter((character) => character.id !== Number(id)),

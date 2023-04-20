@@ -82,6 +82,11 @@ select:hover {
   cursor: pointer;
 } */
 
+.hit {
+  /* filter: grayscale(100%); */
+  filter: opacity(30%)
+}
+
 .back, .front {
   background-color: slateblue;
   display: flex;

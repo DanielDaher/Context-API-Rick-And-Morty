@@ -25,7 +25,7 @@ function Home() {
   return (
     <div className="home-main-content">
       <WelcomePhrase />
-      <Link to="/characters" className="links">Jogar!</Link>
+      <Link to="/play" className="links">Jogar!</Link>
       <select onChange={(e) => setLevel(e.target.value)}>
         <option>Escolher dificuldade</option>
         <option>Fácil</option>

@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Personagens from './Pages/Personagens';
 import Congratulations from './Pages/Congratulations';
 import Details from './Details';
+import Play from './Pages/Play';
 import CharactersProvider from './context/CharactersProvider';
 
 
@@ -17,6 +18,7 @@ function App() {
           <Route exact path='/' component={Home} />
           <Route exact path='/characters' component={Personagens} />
           <Route exact path='/congratulations' component={Congratulations} />
+          <Route exact path='/play' component={Play} />
           <Route path='/details/:id' component={Details} />
         </Switch>
         </BrowserRouter>

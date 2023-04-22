@@ -10,29 +10,47 @@ function Play() {
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
   useEffect(() => {
-    console.log('montei')
+    const getRandomNumber = (cardIds) => cardIds[Math.floor(Math.random() * cardIds.length)];
+
+    const shuffleCards = (deck) => {
+      return deck.sort(function (a, b) {
+        if (a.cardId > b.cardId) {
+          return -1;
+        }
+        if (a.cardId < b.cardId) {
+          return 1;
+        }
+        return 0;
+      });
+    };
+    
     const createGameCards = (characters) => {
       const deckOfCards = [];
-      const cardIds = Array.from({ length: characters.length }, (_, i) => i + 1);
-  
-      characters.forEach((character) => {
-        const randomNumber = cardIds[Math.floor(Math.random() * cardIds.length)];
+      const cardIds = Array.from({ length: characters.length * 2 }, (_, i) => i + 1);
+      const maxCards = gameLevel;
+
+      characters.forEach((character, index) => {
+        if (index >= maxCards) return;
+        const randomNumber = getRandomNumber(cardIds);
         const currentNumber = cardIds.indexOf(randomNumber);
         cardIds.splice(currentNumber, 1);
+        const secondRandomNumber = getRandomNumber(cardIds);
+        const currentNumber2 = cardIds.indexOf(secondRandomNumber);
+        cardIds.splice(currentNumber2, 1);
+
 
         const firstCard = { ...character, cardId: randomNumber, hit: false, flipped: false };
-        const secondCard = { ...firstCard, cardId: randomNumber * 100 };
+        const secondCard = { ...firstCard, cardId: secondRandomNumber };
         deckOfCards.push(firstCard, secondCard);
       });
-  
-      return deckOfCards;
+
+      return shuffleCards(deckOfCards); 
     };
   
     const gameCards = createGameCards(characters);
-  
     setCards(gameCards);
-    console.log('Game cards:', gameCards);
-  }, [characters]);
+
+  }, [characters, gameLevel]);
 
   useEffect(() => {
     const markCards = (firstCard, secondCard) => {
@@ -82,12 +100,10 @@ function Play() {
     const newCards = [...cards];
     const currentCard = newCards.find((card) => card.cardId === Number(id));
     currentCard['flipped'] = !currentCard.flipped;
-    console.log('clone', newCards)
     setCards(newCards);
   }
 
   const renderCards = (character) => {
-    console.log('render cards')
     const { cardId, image, name, flipped, hit } = character;
     if (hit) return (
       <div key={cardId} id={cardId} className='back hit'>

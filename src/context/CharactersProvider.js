@@ -13,7 +13,7 @@ class Provider extends Component {
         charactersMedium: [],
         charactersKeys: {},
         numberOfCardsFlipped: 0,
-        levelOfTheGame: 'Fácil',
+        levelOfTheGame: 5,
       };
       this.toFetch = this.toFetch.bind(this);
       this.setLevel = this.setLevel.bind(this);
@@ -45,8 +45,13 @@ class Provider extends Component {
 }
 
 setLevel(level) {
+  const maxCards = {
+    'Fácil': 5,
+    'Médio': 10,
+    'Difícil': 100,
+  };
   this.setState({
-    levelOfTheGame: level,
+    levelOfTheGame: maxCards[level],
   });
 }
 

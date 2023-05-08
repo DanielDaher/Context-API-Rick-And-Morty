@@ -1,19 +1,49 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
-/* export default class Congratulations extends React.Component {
-    render() {
-        return (<div className="empty-div">
-            <p>Não deu certo! Volte para a página inicial, clique no botão "jogar"!</p>
-            <Link to='/' className="return">Voltar</Link>
-        </div>);
-    };
-}; */
+import React, { useContext, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import MyContext from '../MyContext';
+import Swal from 'sweetalert2';
 
 export default function Congratulations() {
+  const { setLevel, fetchAPI, characters } = useContext(MyContext);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
+
+  const showGameLevels = async () => {  
+    const inputOptions = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          'Fácil': 'Fácil',
+          'Médio': 'Médio',
+          'Difícil': 'Difícil'
+        })
+      }, 1000)
+    })
+    
+    const { value: level } = await Swal.fire({
+      title: 'Selecione o nível de dificuldade',
+      input: 'radio',
+      inputOptions: inputOptions,
+      inputValidator: (value) => {
+        if (!value) {
+          return 'Você precisa escolher um nível'
+        }
+      }
+    })
+    if (level) {
+      if (!characters.length) {
+        fetchAPI();
+      }
+      console.log('level: ', level)
+      setLevel(level);
+      setShouldRedirect(true);
+    }
+  };
+
+  if (shouldRedirect) return <Redirect to='/play' />
+
     return (
       <div className="congratulations-div">
           <p>Uau, fiquei impressionado com a sua memória...</p>
+          <button onClick={() => showGameLevels()}>Recomeçar</button>
           <Link to='/' className="return">Início</Link>
       </div>
     );

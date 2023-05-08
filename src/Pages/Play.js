@@ -89,9 +89,14 @@ function Play() {
       };
     };
   
-    const flippedCards = [ ...cards.filter((card) => card.flipped === true && !card.hit) ];
-    if (flippedCards.length > 0) {
-      checkHitOrError(flippedCards);
+    if (cards.length) {
+      const remainingCard = cards.find((card) => !card.hit);
+      if (!remainingCard) return setShouldRedirect(true);
+      
+      const flippedCards = [ ...cards.filter((card) => card.flipped === true && !card.hit) ];
+      if (flippedCards.length > 0) {
+        checkHitOrError(flippedCards);
+      }
     }
   }, [cards]);
 

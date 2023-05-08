@@ -29,7 +29,7 @@ select:hover {
 }
 
 .links,
-.return {
+.return, .restart-button {
   display: flex;
   justify-content: center;
   text-decoration: none;
@@ -41,12 +41,12 @@ select:hover {
   margin-bottom: 20px;
 }
 
-.return {
-  width: 100px;
+.return, .restart-button {
+  width: 150px;
   margin-bottom: 10px;
 }
 
-.links:hover, .return:hover {
+.links:hover, .return:hover, .restart-button:hover {
   background-color: slateblue;
   color: white;
 }

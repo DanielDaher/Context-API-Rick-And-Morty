@@ -7,7 +7,8 @@ export default function Congratulations() {
   const { setLevel, fetchAPI, characters } = useContext(MyContext);
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
-  const showGameLevels = async () => {  
+  const showGameLevels = async (e) => {  
+    e.preventDefault();
     const inputOptions = new Promise((resolve) => {
       setTimeout(() => {
         resolve({
@@ -43,7 +44,7 @@ export default function Congratulations() {
     return (
       <div className="congratulations-div">
           <p>Uau, fiquei impressionado com a sua memória...</p>
-          <button onClick={() => showGameLevels()}>Recomeçar</button>
+          <Link to='/play' className='restart-button' onClick={(e) => showGameLevels(e)}>Recomeçar</Link>
           <Link to='/' className="return">Início</Link>
       </div>
     );

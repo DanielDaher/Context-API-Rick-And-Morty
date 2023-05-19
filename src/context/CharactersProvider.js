@@ -9,11 +9,28 @@ class Provider extends Component {
         characters: [],
         levelOfTheGame: 5,
       };
+      this.checkCharactersInLocalStorage = this.checkCharactersInLocalStorage.bind(this);
       this.toFetch = this.toFetch.bind(this);
       this.setLevel = this.setLevel.bind(this);
   }
 
+  checkCharactersInLocalStorage() {
+    let hasCharacters = false;
+    const charactersRickAndMorty = JSON.parse(localStorage.getItem('charactersRickAndMorty'));
+
+    if (charactersRickAndMorty && charactersRickAndMorty.length) {
+      this.setState({
+        characters: [...charactersRickAndMorty],
+      });
+      hasCharacters = true;
+    };
+    
+    return hasCharacters;
+  }
+
   async toFetch() {
+    const hasCharactersInLocalStorage = this.checkCharactersInLocalStorage();
+    if (hasCharactersInLocalStorage) return;
     try {
       const requisition = await fetch('https://rickandmortyapi.com/api/character');
       const characters = await requisition.json();
@@ -21,6 +38,7 @@ class Provider extends Component {
       this.setState({
         characters: [...characters.results],
       });
+      localStorage.setItem('charactersRickAndMorty', JSON.stringify([...characters.results]));
     } catch (error) {
       console.log(error);
       Swal.fire({

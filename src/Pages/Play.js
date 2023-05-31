@@ -1,13 +1,23 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import ReactCardFlip from 'react-card-flip';
 import MyContext from '../MyContext';
-// import Swal from 'sweetalert2';
 
 function Play() {
   const { characters, gameLevel } = useContext(MyContext);
   const [cards, setCards] = useState([]);
+  const [playerRecords, setPlayerRecords] = useState({});
+  const [moves, setMoves] = useState(0);
   const [shouldRedirect, setShouldRedirect] = useState(false);
+  const playerMoves = useRef(0);
+  const matchLevel = useRef(gameLevel);
+
+  useEffect(() => {
+    if (Object.keys(playerRecords).length === 0) {
+      const records = JSON.parse(localStorage.getItem('recordRickAndMorty'));
+      records ? setPlayerRecords(records) : setPlayerRecords({ [matchLevel.current]: playerMoves.current })
+    }
+  }, [playerRecords]);
 
   useEffect(() => {
     const getRandomNumber = (cardIds) => cardIds[Math.floor(Math.random() * cardIds.length)];
@@ -54,13 +64,6 @@ function Play() {
 
   useEffect(() => {
     const markCards = (firstCard, secondCard) => {
-      // Swal.fire({
-      //   text: 'Acertou!',
-      //   icon: 'success',
-      //   timer: 1500,
-      //   timerProgressBar: true,
-      //   showConfirmButton: true
-      // });
       const newCards = [...cards];
       newCards.forEach((card) => { 
         if (card.id === firstCard.id || card.id === secondCard.id) {
@@ -86,12 +89,30 @@ function Play() {
           setCards(newCardsProps);
           
         }, 900);
+
+        const newValue = playerMoves.current + 1;
+        setMoves(newValue);
+        playerMoves.current = newValue;
       };
     };
+
+    const finishGame = () => {
+      let oldRecord = JSON.parse(localStorage.getItem('recordRickAndMorty'));
+      const level = matchLevel.current;
+      if (!oldRecord) {
+        oldRecord = { [level]: playerMoves.current };
+      }
+      if (!oldRecord[level] || playerMoves.current <= oldRecord[level]) {
+        const newRecord = { ...oldRecord };
+        newRecord[level] = playerMoves.current;
+        localStorage.setItem('recordRickAndMorty', JSON.stringify(newRecord));
+      }
+      setShouldRedirect(true);
+    }
   
     if (cards.length) {
       const remainingCard = cards.find((card) => !card.hit);
-      if (!remainingCard) return setShouldRedirect(true);
+      if (!remainingCard) return finishGame();
       
       const flippedCards = [ ...cards.filter((card) => card.flipped === true && !card.hit) ];
       if (flippedCards.length > 0) {
@@ -136,6 +157,7 @@ function Play() {
     return (<div className='personagens-div'>
       <Link to="/" className="return">Voltar</Link>
       <div>
+        <h3>Tentativas e recorde: { moves } / { playerRecords[gameLevel] }</h3>
         <h3>Acertos para ganhar: { cards.filter((card) => !card.hit).length / 2 }</h3>
       </div>
       <div className="main-personagens-div">

@@ -13,7 +13,8 @@ function Play() {
   const matchLevel = useRef(gameLevel);
 
   useEffect(() => {
-    if (Object.keys(playerRecords).length === 0) {
+    const didntGetRecordsFromStorage = Object.keys(playerRecords).length === 0;
+    if (didntGetRecordsFromStorage) {
       const records = JSON.parse(localStorage.getItem('recordRickAndMorty'));
       records ? setPlayerRecords(records) : setPlayerRecords({ [matchLevel.current]: playerMoves.current })
     }

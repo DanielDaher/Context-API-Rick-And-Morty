@@ -3,10 +3,6 @@ import { Redirect, Link } from 'react-router-dom';
 import ReactCardFlip from 'react-card-flip';
 import MyContext from '../MyContext';
 
-//próximos passos:
-// criar x1 contra a máquina;
-// criar x1 contra outro player;
-
 function Play() {
   const { characters, gameLevel } = useContext(MyContext);
   const [cards, setCards] = useState([]);

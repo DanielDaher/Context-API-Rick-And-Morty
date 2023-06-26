@@ -3,6 +3,10 @@ import { Redirect, Link } from 'react-router-dom';
 import ReactCardFlip from 'react-card-flip';
 import MyContext from '../MyContext';
 
+//próximos passos:
+// criar x1 contra a máquina;
+// criar x1 contra outro player;
+
 function Play() {
   const { characters, gameLevel } = useContext(MyContext);
   const [cards, setCards] = useState([]);
@@ -13,7 +17,8 @@ function Play() {
   const matchLevel = useRef(gameLevel);
 
   useEffect(() => {
-    if (Object.keys(playerRecords).length === 0) {
+    const didntGetRecordsFromStorage = Object.keys(playerRecords).length === 0;
+    if (didntGetRecordsFromStorage) {
       const records = JSON.parse(localStorage.getItem('recordRickAndMorty'));
       records ? setPlayerRecords(records) : setPlayerRecords({ [matchLevel.current]: playerMoves.current })
     }
